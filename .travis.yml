@@ -21,3 +21,16 @@ after_success:
     - docker push mkayhan/multi-server
     - docker push mkayhan/multi-nginx
     - docker push mkayhan/multi-worker
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-1"
+    app: multi-docker
+    env: MultiDocker-env
+    bucket_name: elasticbeanstalk-us-east-1-336821451175
+    bucket_path: docker-multi
+    on: 
+        branch: master
+    access_key_id: $ACCESS_KEY_ID
+    secret_access_key: $SECRET_ACCESS_KEY
+
